@@ -10,6 +10,12 @@
 
 <table>
   <tr>
+  <td width="200px" align="center">
+      <a href="https://www.aigc2d.com/?ref=lawcnai" target="_blank">
+        <img alt="MagickPen" src="https://www.aigc2d.com/logo/logo-bg-512.png" height="30px" />
+        <p>AIGC2d</p>
+      </a>
+    </td>
     <td width="200px" align="center">
       <a href="https://magickpen.com/?ref=lawcnai" target="_blank">
         <img alt="MagickPen" src="public/MagickPen.png" height="30px" />
@@ -50,7 +56,7 @@
 
 部署此 starter 到 Vercel。Supabase 集成将自动设置所需的环境变量并配置您的[数据库概要](./supabase/migrations/20230406025118_init.sql)。您只需要设置 `OPENAI_KEY`，然后就可以开始了！
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20Law%20CN%20AI&demo-description=Template%20for%20building%20your%20own%20law%20cn%20ai%20powered%20by%20Next.js%2C%20OpenAI%2C%20and%20Supabase.&demo-url=https%3A%2F%2Fsupabase.com%2Fdocs&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1OntM6THNEUvlUsYy6Bjmf%2F475e39dbc84779538c8ed47c63a37e0e%2Fnextjs_openai_doc_search_og.png&project-name=Next.js%20OpenAI%20Doc%20Search%20Starter&repository-name=law-cn-ai&repository-url=https%3A%2F%2Fgithub.com%2Flvwzhen%2Flaw-cn-ai%2F&from=github&integration-ids=oac_jUduyjQgOyzev1fjrW83NYOv&env=OPENAI_KEY&envDescription=Get%20your%20OpenAI%20API%20key%3A&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&teamCreateStatus=hidden&external-id=law-cn-ai)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js Law CN AI%26demo-description=Template for building your own law cn ai powered by Next.js, OpenAI, and Supabase.%26demo-url=https://supabase.com/docs%26demo-image=//images.ctfassets.net/e5382hct74si/1OntM6THNEUvlUsYy6Bjmf/475e39dbc84779538c8ed47c63a37e0e/nextjs_openai_doc_search_og.png%26project-name=Next.js OpenAI Doc Search Starter%26repository-name=law-cn-ai%26repository-url=https://github.com/aigc2d/law-cn-ai/%26from=github%26integration-ids=oac_jUduyjQgOyzev1fjrW83NYOv%26env=OPENAI_KEY%26envDescription=Get your AIGC2D API key:%26envLink=https://www.aigc2d.com%26teamCreateStatus=hidden%26external-id=law-cn-ai)
 
 楼主太懒了，感谢 [GoJun](https://github.com/Freelander) 帮忙写了教程：https://eibot3u32o.feishu.cn/docx/L46Pdp3fjouPUvxaNzPckKctno3
 
