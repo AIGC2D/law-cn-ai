@@ -13,7 +13,6 @@ export const config = {
 const openAiKey = process.env.OPENAI_KEY
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-const openAiBaseUrl = process.env.OPENAI_BASE_URL || "https://api.aigc2d.com/v1"
 
 export default async function handler(req: NextRequest) {
   try {
@@ -45,7 +44,7 @@ export default async function handler(req: NextRequest) {
 
     // Moderate the content to comply with OpenAI T&C
     const sanitizedQuery = query.trim()
-    const moderationResponse = await fetch(`${openAiBaseUrl}/moderations`, {
+    const moderationResponse = await fetch(`https://api.aigc2d.com/v1/moderations`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${openAiKey}`,
@@ -65,7 +64,7 @@ export default async function handler(req: NextRequest) {
       })
     }
 
-    const embeddingResponse = await fetch(`${openAiBaseUrl}/embeddings`, {
+    const embeddingResponse = await fetch(`https://api.aigc2d.com/v1/embeddings`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${openAiKey}`,
@@ -144,7 +143,7 @@ export default async function handler(req: NextRequest) {
       stream: true,
     }
 
-    const response = await fetch(`${openAiBaseUrl}/chat/completions`, {
+    const response = await fetch(`https://api.aigc2d.com/v1/chat/completions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${openAiKey}`,

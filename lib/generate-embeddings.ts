@@ -417,7 +417,7 @@ async function generateEmbeddings() {
         try {
           const configuration = new Configuration({
             apiKey: process.env.OPENAI_KEY,
-            basePath: process.env.OPENAI_BASE_URL || "https://api.aigc2d.com/v1"
+            basePath: "https://api.aigc2d.com/v1"
           })
           const openai = new OpenAIApi(configuration)
 
