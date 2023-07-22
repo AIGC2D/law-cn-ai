@@ -135,7 +135,7 @@ export function SearchDialog() {
 
           // 应该在代码顶部放置断言，以确保 `e.data` 符合 `string` 类型
           // 另外，请注意，使用类型断言会带来运行时错误的风险，因此对于不确定类型的值，请确保进行有效的类型验证
-          const completionResponse= JSON.parse(e.data);
+          const completionResponse = JSON.parse(e.data);
           const text = completionResponse.choices[0].delta?.content || "";
 
           setAnswer((answer) => {
@@ -164,14 +164,16 @@ export function SearchDialog() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    console.log(search)
+    if (!search) {
+      return false
+    }
 
     handleConfirm(search)
   }
 
   return (
     <>
-      
+
       <button
         onClick={() => setOpen(true)}
         className="text-base flex gap-2 items-center px-4 py-3 z-50 relative 
@@ -261,9 +263,8 @@ export function SearchDialog() {
                   className="col-span-3"
                 />
                 <CornerDownLeft
-                  className={`absolute top-3 right-5 h-4 w-4 text-gray-300 transition-opacity ${
-                    search ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`absolute top-3 right-5 h-4 w-4 text-gray-300 transition-opacity ${search ? 'opacity-100' : 'opacity-0'
+                    }`}
                 />
               </div>
               <div className="text-xs text-gray-500 md:flex space-y-2 md:space-y-0 gap-2 dark:text-gray-100">
@@ -311,11 +312,14 @@ export function SearchDialog() {
             </div>
             <DialogFooter>
               <div className="text-xs text-gray-500 mt-4 md:m-0 dark:text-gray-100">
-                * 回答由 AI 检索法律文件后生成，不保证准确率，仅供参考学习！ <a href="https://www.aigc2d.com" className='ml-1 underline decoration-wavy decoration-indigo-500 underline-offset-2 hover:text-indigo-500' target='_blank'>AIGC2D</a> <a href="https://afdian.net/a/lvwzhen/plan" className='ml-1 underline decoration-wavy decoration-indigo-500 underline-offset-2 hover:text-indigo-500' target='_blank'>打赏赞助</a>
+                * 回答由 AI 检索法律文件后生成，不保证准确率，仅供参考学习！
+                <a href="https://www.aigc2d.com" className='ml-1 underline decoration-wavy decoration-indigo-500 underline-offset-2 hover:text-indigo-500' target='_blank'>AIGC2D</a>
               </div>
-              <Button type="submit" className="bg-red-500 block w-full md:w-auto md:inline-block">
+              {search.length > 0 ? <Button type="submit" className="bg-red-500 block w-full md:w-auto md:inline-block">
                 Ask
-              </Button>
+              </Button> : <Button type="submit" disabled className="bg-red-500 block w-full md:w-auto md:inline-block">
+                Ask
+              </Button>}
             </DialogFooter>
           </form>
         </DialogContent>
