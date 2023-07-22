@@ -19,7 +19,24 @@ import { inspect } from 'util'
 
 dotenv.config()
 
-const ignoredFiles = ['pages/404.mdx']
+const ignoredFiles = [
+  'pages/404.mdx',
+]
+//TODO 这些文件tokens太多了，会导致生成的向量数据出错，需要重新切割下内容
+const ignoredLawFiles = [
+  'pages/docs/刑法/刑法修正案（八）.mdx',
+  'pages/docs/刑法/刑法修正案（十一）.mdx',
+  'pages/docs/刑法/刑法修正案（九）.mdx',
+  'pages/docs/司法解释/最高人民法院关于办理减刑、假释案件具体应用法律的规定(2016-11-14).mdx',
+  'pages/docs/司法解释/最高人民法院关于修改《最高人民法院关于破产企业国有划拨土地使用权应否列入破产财产等问题的批复》等二十九件商事类司法解释的决定.mdx',
+  'pages/docs/司法解释/最高人民法院关于适用《行政诉讼法》的解释(2018-02-06).mdx',
+  'pages/docs/行政法/食品安全法(2021-04-29).mdx',
+  'pages/docs/司法解释/最高人民法院关于修改《最高人民法院关于在民事审判工作中适用〈工会法〉若干问题的解释》等二十七件民事类司法解释的决定.mdx',
+  'pages/docs/司法解释/最高人民法院关于修改《最高人民法院关于审理侵犯专利权纠纷案件应用法律若干问题的解释（二）》等十八件知识产权类司法解释的决定.mdx',
+  'pages/docs/司法解释/最高人民法院关于审理劳动争议案件适用法律问题的解释（一）(2020-12-29).mdx',
+  'pages/docs/司法解释/最高人民法院关于适用《企业破产法》若干问题的规定（二）(2020-12-29).mdx'
+]
+
 
 /**
  * Extracts ES literals from an `estree` `ObjectExpression`
@@ -73,7 +90,7 @@ function extractMetaExport(mdxTree: Root) {
       metaExportNode.data.estree.body[0].declaration.declarations[0]?.id.type === 'Identifier' &&
       metaExportNode.data.estree.body[0].declaration.declarations[0].id.name === 'meta' &&
       metaExportNode.data.estree.body[0].declaration.declarations[0].init?.type ===
-        'ObjectExpression' &&
+      'ObjectExpression' &&
       metaExportNode.data.estree.body[0].declaration.declarations[0].init) ||
     undefined
 
@@ -225,7 +242,7 @@ abstract class BaseEmbeddingSource {
   meta?: Meta
   sections?: Section[]
 
-  constructor(public source: string, public path: string, public parentPath?: string) {}
+  constructor(public source: string, public path: string, public parentPath?: string) { }
 
   abstract load(): Promise<{
     checksum: string
@@ -293,9 +310,9 @@ async function generateEmbeddings() {
     ...(await walk('pages'))
       .filter(({ path }) => /\.mdx?$/.test(path))
       .filter(({ path }) => !ignoredFiles.includes(path))
+      .filter(({ path }) => !ignoredLawFiles.includes(path))
       .map((entry) => new MarkdownEmbeddingSource('guide', entry.path)),
   ]
-
   console.log(`Discovered ${embeddingSources.length} pages`)
 
   if (!shouldRefresh) {
