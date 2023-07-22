@@ -136,9 +136,9 @@ export default async function handler(req: NextRequest) {
     `
 
     const completionOptions: CreateChatCompletionRequest = {
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-16k",
       messages: [{ role: "user", content: prompt }],
-      max_tokens: 256,
+      max_tokens: 4000,
       temperature: 0,
       stream: true,
     }
